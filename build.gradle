@@ -34,6 +34,8 @@ repositories {
 //버전 명시를 하지 않아야 빌드에 설정된 전역변수 버전(ext)을 따라간다.
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile ('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') //spring data jpa 추상화 라이브러리, 버전을 자동으로 관리
+    compile('com.h2database:h2') //인메모리 관계형DB, was구동할때마다 초기화, 테스트용도로 사용된다.
     compile('org.projectlombok:lombok')
+    testCompile ('org.springframework.boot:spring-boot-starter-test')
 }

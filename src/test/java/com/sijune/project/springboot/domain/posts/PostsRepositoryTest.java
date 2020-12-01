@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 @RunWith(SpringRunner.class) //Junit 프레임워크에 SpringRunner라는 실행자를 실행시켜라
-@SpringBootTest
+@SpringBootTest //H2 자동으로 실행된다.
 public class PostsRepositoryTest {
 
     @Autowired
@@ -29,10 +29,10 @@ public class PostsRepositoryTest {
         String title = "test111";
         String content = "content111";
 
-        postsRepository.save(Posts.builder().title(title).content(content).author("sijune0525@naver.com").build());
+        postsRepository.save(Posts.builder().title(title).content(content).author("sijune0525@naver.com").build()); //insert update 진행
 
         //when
-        List<Posts> postsList = postsRepository.findAll();
+        List<Posts> postsList = postsRepository.findAll(); //테이블에 있는 모든 데이터 조회
 
         //then
         Posts posts = postsList.get(0);

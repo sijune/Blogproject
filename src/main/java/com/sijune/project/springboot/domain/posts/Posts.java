@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor // 기본생성자 자동추가
 @Entity //JPA 어노테이션, 테이블과 링크된다.
-public class Posts {
+public class Posts extends BaseTimeEntity{
 
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment, PK를 이렇게 설정하는 것이 좋다.
@@ -28,5 +28,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }

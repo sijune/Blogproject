@@ -2,12 +2,16 @@ package com.sijune.project.springboot.service;
 
 import com.sijune.project.springboot.domain.posts.Posts;
 import com.sijune.project.springboot.domain.posts.PostsRepository;
+import com.sijune.project.springboot.web.dto.PostsListResponseDto;
 import com.sijune.project.springboot.web.dto.PostsResponseDto;
 import com.sijune.project.springboot.web.dto.PostsSaveRequestDto;
 import com.sijune.project.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -26,8 +30,22 @@ public class PostsService {
         return id;
     }
 
+    @Transactional
     public PostsResponseDto findById(Long id){
         Posts entity = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id = "+id));
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
+        //List<Posts>로 받은 값을 PostsListResponseDto로 생성해 다시 리스트 생성해 반환
+        //DTO와 entity의 역할이 다르기 때문
+    }
+
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id = "+id));
+        postsRepository.delete(posts);
     }
 }

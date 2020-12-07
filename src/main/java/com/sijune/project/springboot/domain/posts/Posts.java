@@ -1,5 +1,6 @@
 package com.sijune.project.springboot.domain.posts;
 
+import com.sijune.project.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor // 기본생성자 자동추가
 @Entity //JPA 어노테이션, 테이블과 링크된다.
-public class Posts extends BaseTimeEntity{
+public class Posts extends BaseTimeEntity {
 
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment, PK를 이렇게 설정하는 것이 좋다.

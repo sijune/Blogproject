@@ -38,5 +38,8 @@ dependencies {
     compile('com.h2database:h2') //인메모리 관계형DB, was구동할때마다 초기화, 테스트용도로 사용된다.
     compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')//스프링 시큐리티
+    compile('org.springframework.session:spring-session-jdbc')
+    compile('org.springframework.security:spring-security-test')
     testCompile ('org.springframework.boot:spring-boot-starter-test')
 }

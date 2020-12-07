@@ -1,9 +1,14 @@
 package com.sijune.project.springboot.web;
 
+import com.sijune.project.springboot.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,12 +18,15 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class) //Junit 프레임워크의 SpringRunner라는 클래스를 실행시켜라
-@WebMvcTest(controllers = HelloController.class) //@Controller등을 사용할 수 있다.
+@WebMvcTest(controllers = HelloController.class, excludeFilters = {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)})
+//@Controller등을 사용할 수 있다.
+//excludeFilter를 이용해 스캔대상에서 SpringSecurity를 제거한다.
 public class HelloControllerTest {
     @Autowired //스프링이 관리하는 빈 주입을 받는다.
     private MockMvc mvc; // 웹 API 테스트 시 사용(HTTP GET, POST), 스프링 MVC의 시작
 
     @Test
+    @WithMockUser(roles="USER")
     public void hello_return() throws Exception {
         String hello = "hello";
 
@@ -28,6 +36,7 @@ public class HelloControllerTest {
     }
 
     @Test
+    @WithMockUser(roles="USER")
     public void helloDto_return() throws Exception {
         String name = "hello";
         int amount = 1000;

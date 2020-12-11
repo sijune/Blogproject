@@ -31,7 +31,7 @@ deploy:
     wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알림
-#notifications:
-#  email:
-#    recipients:
-#      - sijune0525@gmail.com
+notifications:
+  email:
+    recipients:
+      - sijune0525@gmail.com

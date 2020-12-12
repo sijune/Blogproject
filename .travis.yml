@@ -30,6 +30,21 @@ deploy:
     local_dir: deploy
     wait-until-deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    bucket: blogproject-build
+    key: blogProject.zip
+
+    bundle_type: zip
+    application: blogProject
+
+    deploy_group: blogProject-group
+
+    region: ap-northeast-2
+    wati-until-deployed: true
+
 # CI 실행 완료 시 메일로 알림
 notifications:
   email:

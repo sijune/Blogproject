@@ -40,7 +40,7 @@ deploy:
     bundle_type: zip
     application: blogProject
 
-    deploy_group: blogProject-group
+    deployment_group: blogProject-group
 
     region: ap-northeast-2
     wati-until-deployed: true

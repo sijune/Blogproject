@@ -18,7 +18,7 @@ before_deploy:
 #  - zip -r blogProject * # 현재 경로 모든 파일 압축
 #  - mkdir -p deploy # 현재 travis CI가 실행중인 위치에서 생성
 #  - mv blogProject.zip deploy/blogProject.zip
-  - mkdir -p before-zip
+  - mkdir -p before-deploy
   - cp scripts/*.sh before-deploy/
   - cp appspec.yml before-deploy/
   - cp build/libs/*.jar before-deploy/

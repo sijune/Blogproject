@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .headers().frameOptions().disable()
-                .and().authorizeRequests().antMatchers("/", "/css/**","/images/**", "/js/**", "/h2-console/**").permitAll()
+                .and().authorizeRequests().antMatchers("/", "/css/**","/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
                                         .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                                         .anyRequest().authenticated() //인증된 사용자만 허용가능
                 .and().logout().logoutSuccessUrl("/")

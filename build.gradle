@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 group 'com.sijune.project'
-version '1.0.1-SNAPSHOT'
+version '1.0.1-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 //자바 버전 명시
 sourceCompatibility = 1.8
 

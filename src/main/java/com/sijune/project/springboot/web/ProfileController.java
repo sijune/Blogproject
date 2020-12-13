@@ -18,7 +18,6 @@ public class ProfileController {
     public String profile() {
         // 활성화된 profile을 담는다.
         List<String> profiles = Arrays.asList(env.getActiveProfiles());
-
         //filter로 사용될 profile 생성
         List<String> realProfiles = Arrays.asList("real", "real1", "real2");
 

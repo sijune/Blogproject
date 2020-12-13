@@ -2,25 +2,24 @@
 
 # 쉬고 있는 profile 찾기
 function find_idle_profile() {
-    RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
+  RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 
-    # 현재 nginx가 바라보고 있는 profile찾기
-    if [ ${RESPONSE_CODE} -ge 400 ]
-    then
-      CURRENT_PROFILE=real2
-    else
-      CURRENT_PROFILE=$(curl -s http://localhost/profile)
-    fi
+  # 현재 nginx가 바라보고 있는 profile찾기
+  if [ ${RESPONSE_CODE} -ge 400 ]; then
+    CURRENT_PROFILE=real2
+  else
+    CURRENT_PROFILE=$(curl -s http://localhost/profile)
+  fi
 
-    # 쉬고 있는 profile찾기
-    if [ ${CURRENT_PROFILE} == real1 ]
-    then
-      IDLE_PROFILE=real2
-    else
-      IDLE_PROFILE=real1
-    fi
+  # 쉬고 있는 profile찾기
+  if [ ${CURRENT_PROFILE} == real1 ]
+  then
+    IDLE_PROFILE=real2
+  else
+    IDLE_PROFILE=real1
+  fi
 
-    echo "${IDLE_PROFILE}"
+  echo "${IDLE_PROFILE}"
 }
 
 function find_idle_port() {

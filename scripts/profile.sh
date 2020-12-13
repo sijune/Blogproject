@@ -12,8 +12,7 @@ function find_idle_profile() {
   fi
 
   # 쉬고 있는 profile찾기
-  if [ ${CURRENT_PROFILE} == real1 ]
-  then
+  if [ ${CURRENT_PROFILE} == real1 ]; then
     IDLE_PROFILE=real2
   else
     IDLE_PROFILE=real1

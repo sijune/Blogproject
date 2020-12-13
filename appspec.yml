@@ -12,7 +12,17 @@ permissions: # codedeploy에서 ec2로 넘어온 모든파일에 권한 부여
       group: ec2-user
 
 hooks:
+  AfterInstall:
+    - location: stop.sh
+      timeout: 60
+      runas: ec2-user
+
   ApplicationStart: # ec2-ussr권한으로 deploy.sh실행
-    - location: deploy.sh
+    - location: start.sh
+      timeout: 60
+      runas: ec2-user
+
+  ValidateService:
+    - location: health.sh
       timeout: 60
       runas: ec2-user
